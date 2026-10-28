@@ -1,0 +1,35 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Fixture\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en_US\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: oc-includes/a.php
+msgid "Seller's information"
+msgstr ""
+
+#: oc-includes/b.php
+msgid "Click, or drop images here, to upload"
+msgstr ""
+
+msgid "%1$s listings found in %2$s"
+msgstr ""
+
+msgid "Read the <a href=\"%s\">rules</a> first"
+msgstr ""
+
+msgctxt "menu"
+msgid "Edit"
+msgstr ""
+
+msgid "%d listing"
+msgid_plural "%d listings"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Hello {name}"
+msgstr ""
+

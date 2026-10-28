@@ -1,0 +1,510 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Translator 0.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/mindstellar/shopclass-plugin-translator/issues\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: \n"
+
+#: admin/page.php:91
+msgid "Actions"
+msgstr ""
+
+#: admin/page.php:208
+msgid "Add to my changes"
+msgstr ""
+
+#: admin/page.php:74
+msgid "All"
+msgstr ""
+
+#: admin/page.php:246
+#: admin/page.php:250
+msgid "All your changed texts for %s go back to the original. You can undo this once."
+msgstr ""
+
+#: admin/banner.php:28
+msgid "All your texts match the current originals."
+msgstr ""
+
+#: src/admin/Actions.php:45
+#: src/admin/Actions.php:74
+msgid "Back to the original text."
+msgstr ""
+
+#: admin/page.php:253
+#: admin/page.php:301
+msgid "Cancel"
+msgstr ""
+
+#: src/admin/Screen.php:54
+msgid "Change or translate any text on your site. Pick the language and the source, then click a text to edit it. Your changes are kept when core, themes and plugins update."
+msgstr ""
+
+#: admin/page.php:43
+msgid "Change or translate any text on your site. Your changes are kept when core, themes and plugins update."
+msgstr ""
+
+#: admin/page.php:158
+msgid "Changed"
+msgstr ""
+
+#: admin/page.php:75
+msgid "Changed only"
+msgstr ""
+
+#: admin/banner.php:35
+msgid "Check again"
+msgstr ""
+
+#: admin/page.php:100
+msgid "Check the spelling, or search for a shorter part of the text."
+msgstr ""
+
+#: src/admin/Actions.php:121
+msgid "Checked."
+msgstr ""
+
+#: src/admin/PoUpload.php:30
+#: src/admin/PoUpload.php:34
+msgid "Choose a .po file."
+msgstr ""
+
+#: admin/page.php:101
+msgid "Clear search"
+msgstr ""
+
+#: admin/page.php:181
+#: admin/page.php:262
+#: admin/page.php:278
+msgid "Close"
+msgstr ""
+
+#: src/admin/Screen.php:189
+msgid "Core"
+msgstr ""
+
+#: src/admin/Actions.php:123
+msgid "Could not check your texts."
+msgstr ""
+
+#: src/admin/Export.php:82
+msgid "Could not make a temporary file for the export."
+msgstr ""
+
+#: src/admin/Actions.php:320
+msgid "Could not make the export."
+msgstr ""
+
+#: src/admin/Export.php:87
+msgid "Could not open the zip file."
+msgstr ""
+
+#: src/admin/Actions.php:379
+msgid "Could not save. Check that oc-content/plugin-data/translator/ can be written."
+msgstr ""
+
+#: src/admin/Actions.php:310
+msgid "Could not write the export."
+msgstr ""
+
+#: src/admin/Export.php:103
+msgid "Could not write the zip file."
+msgstr ""
+
+#: admin/page.php:258
+msgid "Deleting a language does not delete your changes. They are in %s."
+msgstr ""
+
+#: admin/page.php:230
+msgid "Download"
+msgstr ""
+
+#: admin/page.php:233
+msgid "Download my changes (.po)"
+msgstr ""
+
+#: admin/page.php:149
+#: admin/page.php:160
+msgid "Edit"
+msgstr ""
+
+#: admin/page.php:276
+#: src/admin/Screen.php:234
+msgid "Edit text"
+msgstr ""
+
+#: src/TextCheck.php:22
+#: src/admin/Screen.php:228
+msgid "Enter a text"
+msgstr ""
+
+#: src/admin/Export.php:118
+msgid "Export all as .zip"
+msgstr ""
+
+#: src/admin/Export.php:114
+msgid "Export full translation (.po)"
+msgstr ""
+
+#: admin/page.php:72
+msgid "Filter"
+msgstr ""
+
+#: admin/page.php:83
+#: admin/page.php:179
+msgid "Import and export"
+msgstr ""
+
+#: admin/page.php:148
+msgid "Keep mine"
+msgstr ""
+
+#: src/admin/Actions.php:107
+msgid "Kept your text."
+msgstr ""
+
+#: admin/page.php:51
+msgid "Language"
+msgstr ""
+
+#: admin/banner.php:30
+msgid "Last checked %s"
+msgstr ""
+
+#: src/admin/Screen.php:233
+msgid "Looks good."
+msgstr ""
+
+#: admin/page.php:218
+msgid "Max 2 MB, for this language and source. You can undo an upload once."
+msgstr ""
+
+#: admin/page.php:76
+msgid "Needs a look"
+msgstr ""
+
+#: src/admin/Actions.php:281
+msgid "No changed texts for this language and source yet."
+msgstr ""
+
+#: src/admin/Actions.php:62
+msgid "No text was sent. Nothing was changed."
+msgstr ""
+
+#: src/admin/Actions.php:179
+msgid "No texts in the file match this source."
+msgstr ""
+
+#: admin/page.php:99
+msgid "No texts match your search."
+msgstr ""
+
+#: admin/page.php:108
+msgid "No texts match."
+msgstr ""
+
+#: admin/page.php:104
+msgid "No texts need a look."
+msgstr ""
+
+#: src/admin/Actions.php:326
+msgid "No texts to export for this language."
+msgstr ""
+
+#: admin/page.php:20
+#: src/admin/Screen.php:354
+msgid "Only an administrator can change texts."
+msgstr ""
+
+#: admin/page.php:214
+msgid "Only the texts in the file are kept."
+msgstr ""
+
+#: admin/page.php:235
+msgid "Only your changed texts for this language and source."
+msgstr ""
+
+#: admin/page.php:156
+msgid "Original changed"
+msgstr ""
+
+#: admin/page.php:152
+msgid "Original removed"
+msgstr ""
+
+#: admin/page.php:88
+#: admin/page.php:133
+#: admin/page.php:287
+#: src/admin/Screen.php:235
+msgid "Original text"
+msgstr ""
+
+#: admin/page.php:106
+msgid "Pick a text in All to change it. Your changes show here."
+msgstr ""
+
+#: admin/page.php:154
+msgid "Placeholders differ"
+msgstr ""
+
+#: src/admin/Screen.php:188
+msgid "Plugins"
+msgstr ""
+
+#: src/admin/Screen.php:236
+msgid "Plural"
+msgstr ""
+
+#: src/admin/TextForm.php:55
+msgid "Plural form %1$d: %2$s"
+msgstr ""
+
+#: src/admin/Screen.php:239
+msgid "Plural form %s"
+msgstr ""
+
+#: admin/page.php:224
+msgid "Puts your texts back as they were before the last upload or Remove all. Texts saved since then are lost."
+msgstr ""
+
+#: admin/page.php:252
+msgid "Remove all"
+msgstr ""
+
+#: admin/page.php:245
+#: admin/page.php:253
+msgid "Remove all my changes"
+msgstr ""
+
+#: admin/page.php:251
+msgid "Remove all my changes?"
+msgstr ""
+
+#: admin/page.php:146
+msgid "Remove mine"
+msgstr ""
+
+#: admin/page.php:213
+msgid "Replace all my changes"
+msgstr ""
+
+#: admin/page.php:300
+msgid "Reset to original"
+msgstr ""
+
+#: admin/page.php:299
+msgid "Save"
+msgstr ""
+
+#: admin/page.php:70
+msgid "Search"
+msgstr ""
+
+#: admin/page.php:67
+#: admin/page.php:69
+msgid "Search texts"
+msgstr ""
+
+#: src/admin/Screen.php:238
+msgid "Singular"
+msgstr ""
+
+#: admin/page.php:57
+msgid "Source"
+msgstr ""
+
+#: admin/page.php:90
+#: admin/page.php:150
+msgid "Status"
+msgstr ""
+
+#: src/admin/Actions.php:77
+msgid "Text saved."
+msgstr ""
+
+#: admin/page.php:209
+msgid "Texts in the file replace the same texts. Your other changes stay."
+msgstr ""
+
+#: src/admin/Actions.php:98
+#: src/admin/TextForm.php:37
+msgid "That text is not in this source any more"
+msgstr ""
+
+#: src/admin/Actions.php:96
+msgid "That text is not one of your changes."
+msgstr ""
+
+#: src/admin/Actions.php:42
+msgid "That text was not changed."
+msgstr ""
+
+#: src/admin/PoUpload.php:127
+msgid "The file did not arrive. Try again."
+msgstr ""
+
+#: src/admin/PoUpload.php:122
+msgid "The file is larger than 2 MB."
+msgstr ""
+
+#: src/admin/Actions.php:172
+#: src/admin/PoUpload.php:117
+msgid "The file is not a .po file we can read."
+msgstr ""
+
+#: src/admin/Screen.php:75
+msgid "The file is too big to upload."
+msgstr ""
+
+#: src/admin/PoUpload.php:64
+msgid "The file must be UTF-8."
+msgstr ""
+
+#: admin/page.php:240
+msgid "The full translation has the shipped texts with your changes over them."
+msgstr ""
+
+#: admin/page.php:290
+msgid "The text you replaced is now"
+msgstr ""
+
+#: src/admin/Screen.php:189
+msgid "Theme"
+msgstr ""
+
+#: src/admin/Actions.php:213
+msgid "There is nothing to undo."
+msgstr ""
+
+#: src/admin/Actions.php:294
+#: src/admin/Export.php:78
+msgid "This server cannot make zip files."
+msgstr ""
+
+#: admin/page.php:40
+#: src/admin/Screen.php:47
+#: src/admin/Screen.php:53
+msgid "Translator"
+msgstr ""
+
+#: index.php:54
+msgid "Translator needs Shopclass 7.0.6 or newer"
+msgstr ""
+
+#: admin/page.php:223
+msgid "Undo last upload"
+msgstr ""
+
+#: admin/page.php:217
+msgid "Upload"
+msgstr ""
+
+#: admin/page.php:185
+#: admin/page.php:202
+msgid "Upload a .po file"
+msgstr ""
+
+#: admin/page.php:148
+msgid "Use the new original"
+msgstr ""
+
+#: admin/page.php:147
+msgid "Use the original"
+msgstr ""
+
+#: admin/page.php:205
+msgid "What to do with your changes"
+msgstr ""
+
+#: admin/page.php:106
+#: admin/page.php:237
+#: src/admin/Actions.php:233
+msgid "You have not changed any texts here yet."
+msgstr ""
+
+#: admin/page.php:139
+msgid "You replaced %1$s. It is now %2$s."
+msgstr ""
+
+#: admin/page.php:89
+#: admin/page.php:135
+#: src/admin/Screen.php:237
+msgid "Your text"
+msgstr ""
+
+#: src/TextCheck.php:43
+#: src/admin/Screen.php:232
+msgid "Your text cannot contain scripts or event handlers"
+msgstr ""
+
+#: src/TextCheck.php:34
+#: src/admin/Screen.php:230
+msgid "Your text has a placeholder the original does not have: %s"
+msgstr ""
+
+#: src/TextCheck.php:30
+#: src/admin/Screen.php:229
+msgid "Your text must keep %s"
+msgstr ""
+
+#: src/TextCheck.php:40
+#: src/admin/Screen.php:231
+msgid "Your text must keep the same HTML tags as the original"
+msgstr ""
+
+#: src/admin/Actions.php:220
+msgid "Your texts are back as they were."
+msgstr ""
+
+#: admin/page.php:104
+msgid "Your texts match the current originals."
+msgstr ""
+
+#: src/admin/Screen.php:309
+msgid "just now"
+msgstr ""
+
+#: src/admin/Actions.php:255
+msgid "%1$d text did not pass the check: %2$s"
+msgid_plural "%1$d texts did not pass the check: %2$s"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/admin/Actions.php:251
+msgid "%1$d text is not in this source: %2$s"
+msgid_plural "%1$d texts are not in this source: %2$s"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/admin/Screen.php:319
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/admin/Screen.php:314
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/banner.php:22
+msgid "%d of your texts needs a look."
+msgid_plural "%d of your texts need a look."
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/admin/Actions.php:237
+msgid "%d text removed."
+msgid_plural "%d texts removed."
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/admin/Actions.php:199
+msgid "%d text saved."
+msgid_plural "%d texts saved."
+msgstr[0] ""
+msgstr[1] ""

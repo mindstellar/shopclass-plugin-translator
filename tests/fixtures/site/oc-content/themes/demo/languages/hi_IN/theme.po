@@ -1,0 +1,18 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Fixture\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: hi_IN\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Your contact information"
+msgstr "आपकी संपर्क जानकारी"
+
+msgid "%s photos"
+msgstr ""
+
+msgid "Fill in the details below."
+msgstr ""
+

@@ -1,0 +1,23 @@
+{
+  "$schema": "../schema/package.schema.json",
+  "slug": "translator",
+  "type": "plugin",
+  "modes": ["classifieds", "shop"],
+  "categories": [
+    "localisation",
+    "admin-tools"
+  ],
+  "tags": [
+    "translation",
+    "texts",
+    "language",
+    "gettext",
+    "po"
+  ],
+  "short_description": "Change or translate any text on your site.",
+  "license": "GPL-3.0-or-later",
+  "support": {
+    "issues": "https://github.com/mindstellar/shopclass-plugin-translator/issues",
+    "docs": "https://github.com/mindstellar/shopclass-plugin-translator#readme"
+  }
+}

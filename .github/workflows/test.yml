@@ -1,0 +1,43 @@
+# Runs the unit tests on every push and pull request. They need no database and no
+# network, and read gettext and FileSystem from a checkout of core.
+name: test
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - php: '8.0'
+            core: 7.0.6
+          - php: '8.3'
+            core: develop
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+
+      - name: Check out core
+        uses: actions/checkout@v4
+        with:
+          repository: mindstellar/shopclass
+          ref: ${{ matrix.core }}
+          path: core
+
+      - name: Install core's packages
+        run: composer install -q --no-interaction --no-dev --ignore-platform-reqs
+        working-directory: core
+
+      - name: Run the tests
+        run: SHOPCLASS_CORE="$PWD/core" ./tests/run.sh
