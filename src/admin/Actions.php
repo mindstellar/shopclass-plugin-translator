@@ -15,11 +15,12 @@ use mindstellar\translator\Plugin;
 use mindstellar\translator\Sources;
 use mindstellar\translator\SourceStrings;
 use mindstellar\translator\SyncStatus;
+use mindstellar\translator\TemplateBuilder;
 use Params;
 use Throwable;
 
 /**
- * The Translator screen's save, reset, keep, check, upload, undo, remove all and download actions. Each one ends in a
+ * The Translator screen's save, reset, keep, check, upload, undo, remove all, template and download actions. Each one ends in a
  * redirect back to the list, or in the file for a download.
  */
 final class Actions
@@ -238,6 +239,32 @@ final class Actions
             }
         } catch (Throwable $e) {
             osc_add_flash_error_message(self::writeError(), 'admin');
+        }
+        osc_redirect_to(Screen::url($state));
+    }
+
+    /** Makes, or makes again, the template of a theme or plugin that ships none. */
+    public static function template(array $state): void
+    {
+        $source = $state['source'];
+        if (!$source->canMakeTemplate()) {
+            osc_add_flash_warning_message(osc_esc_html(__('This source has its own template.', 'translator')), 'admin');
+            osc_redirect_to(Screen::url($state));
+
+            return;
+        }
+        try {
+            $n = TemplateBuilder::build($source->folder(), $source->domain(), $source->templateFile());
+        } catch (Throwable $e) {
+            osc_add_flash_error_message(self::writeError(), 'admin');
+            osc_redirect_to(Screen::url($state));
+
+            return;
+        }
+        if ($n === 0) {
+            osc_add_flash_error_message(osc_esc_html(__('No texts for this source were found in its files.', 'translator')), 'admin');
+        } else {
+            osc_add_flash_ok_message(osc_esc_html(sprintf(_n('Template made with %d text.', 'Template made with %d texts.', $n, 'translator'), $n)), 'admin');
         }
         osc_redirect_to(Screen::url($state));
     }

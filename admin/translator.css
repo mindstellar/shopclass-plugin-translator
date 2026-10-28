@@ -57,3 +57,5 @@
 .tr-busy { pointer-events:none; }
 .tr-spin { block-size:.85em; inline-size:.85em; border-width:.15em; margin-inline-end:.35em; vertical-align:-.1em; }
 .tr-modes .form-check { margin-block-end:.35rem; }
+.tr-template { display:flex; flex-wrap:wrap; align-items:center; gap:.5rem 1rem; margin-block:1rem; }
+.tr-template .tr-note { margin:0; }

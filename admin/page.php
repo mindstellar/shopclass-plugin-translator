@@ -82,6 +82,13 @@ osc_admin_page_head(__('Translator', 'translator'));
     </form>
     <button type="button" class="btn btn-sm btn-dim" id="trIoOpen" aria-haspopup="dialog" aria-controls="trIo"><i class="bi bi-arrow-down-up" aria-hidden="true"></i> <?php echo osc_esc_html(__('Import and export', 'translator')); ?></button>
 </div>
+<?php if ($trView['template'] === 'none' && $trView['canTemplate']) { ?>
+<form method="post" action="<?php echo osc_esc_html($trView['urls']['post']); ?>" class="tr-template"><?php
+    foreach ($trHidden as $trName => $trValue) { ?><input type="hidden" name="<?php echo osc_esc_html($trName); ?>" value="<?php echo osc_esc_html($trValue); ?>"><?php } ?>
+    <p class="tr-note"><?php echo osc_esc_html(__('This source has no translation template. Make one from its files.', 'translator')); ?></p>
+    <button type="submit" name="<?php echo Screen::ACTION; ?>" value="template" class="btn btn-sm btn-primary"><i class="bi bi-file-earmark-plus" aria-hidden="true"></i> <?php echo osc_esc_html(__('Make a template', 'translator')); ?></button>
+</form>
+<?php } else { ?>
 <table class="table tr-table">
     <thead>
     <tr>
@@ -169,6 +176,7 @@ osc_admin_pager([
     'page'     => $trList['page'],
     'base_url' => Screen::url($trState),
 ]);
+}
 ?>
 
 <div class="osc-drawer-backdrop" id="trIoBackdrop" hidden></div>
@@ -239,6 +247,17 @@ osc_admin_pager([
             <div class="tr-file-actions"><?php echo Export::links($trState); ?></div>
             <p class="tr-note mb-0"><?php echo osc_esc_html(__('The full translation has the shipped texts with your changes over them.', 'translator')); ?></p>
         </section>
+
+        <?php if ($trView['template'] === 'generated' && $trView['canTemplate']) { ?>
+            <section class="tr-io-part" aria-labelledby="trIoTemplate">
+                <h3 class="tr-io-title" id="trIoTemplate"><?php echo osc_esc_html(__('Template', 'translator')); ?></h3>
+                <p class="tr-note mt-0"><?php echo osc_esc_html(__('Made from the files of this theme or plugin. Rebuild it after an update.', 'translator')); ?></p>
+                <form method="post" action="<?php echo osc_esc_html($trView['urls']['post']); ?>"><?php
+                foreach ($trHidden as $trName => $trValue) { ?><input type="hidden" name="<?php echo osc_esc_html($trName); ?>" value="<?php echo osc_esc_html($trValue); ?>"><?php } ?>
+                    <button type="submit" name="<?php echo Screen::ACTION; ?>" value="template" class="btn btn-sm btn-dim"><i class="bi bi-arrow-repeat" aria-hidden="true"></i> <?php echo osc_esc_html(__('Rebuild the template', 'translator')); ?></button>
+                </form>
+            </section>
+        <?php } ?>
 
         <?php if ($trView['hasCustom']) { ?>
             <section class="tr-io-part tr-io-danger" aria-labelledby="trIoRemove">

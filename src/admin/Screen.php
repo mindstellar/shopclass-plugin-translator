@@ -117,6 +117,9 @@ final class Screen
             case 'removeall':
                 Actions::removeAll($state, self::store());
                 break;
+            case 'template':
+                Actions::template($state);
+                break;
             default:
                 osc_redirect_to(self::url($state));
         }
@@ -219,6 +222,8 @@ final class Screen
             'pluralForms' => $forms,
             'hasCustom'   => is_file($store->poPath($locale, $source)),
             'hasBackup'   => $store->hasBackup($locale, $source),
+            'template'    => $source->template(),
+            'canTemplate' => $source->canMakeTemplate(),
             'urls'        => [
                 'self'     => self::url($state),
                 'download' => self::url($state, [self::ACTION => 'download']),

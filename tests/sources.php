@@ -129,7 +129,7 @@ pin('its pot is the made template', $templates . 'plugin-beta.pot', $beta->potPa
 pin('its originals are the made template', $templates . 'plugin-beta.pot', $beta->originalsPath('hi_IN'));
 check('it can be rebuilt', $beta->canMakeTemplate());
 pin('a shipped pot wins over a made one', $site . '/oc-content/plugins/alpha/languages/alpha.pot', $t->find('plugin-alpha')->potPath());
-pin('a plugin folder that is missing is not listed', null, make($site, 'demo', ['delta/index.php'], '', $templates)->find('plugin-delta'));
+pin('a plugin folder that is missing is not listed', null, make($site, 'demo', ['missing/index.php'], '', $templates)->find('plugin-missing'));
 
 harness_section('Locales');
 foreach (['hi_IN', 'en_US', 'ast_ES', 'hi_in'] as $c) {

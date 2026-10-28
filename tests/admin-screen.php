@@ -945,6 +945,75 @@ $out = page();
 check('the page still renders', strpos($out, 'tr-table') !== false && strpos($out, 'tr-sync') === false);
 useStore($site, $store, $dir);
 
+harness_section('handle: template');
+$tplDir     = tmpdir() . '/templates/';
+$tplSources = new Sources(
+    $site . '/oc-content/languages/',
+    $site . '/oc-content/themes/',
+    $site . '/oc-content/plugins/',
+    'demo',
+    ['alpha/index.php', 'beta/index.php', 'delta/index.php'],
+    null,
+    null,
+    '',
+    $tplDir
+);
+Screen::use($tplSources, $store, new SyncStatus($tplSources, $store, $dir, ['en_US', 'hi_IN'], static fn (): ?string => null, static function (?string $json): void {
+}));
+$deltaPot = $tplDir . 'plugin-delta.pot';
+$GLOBALS['request'] = base(['source' => 'plugin-delta']);
+$v = Screen::view();
+pin('a plugin with no template is picked', 'plugin-delta', $v['source']->name());
+pin('the view says it has no template', 'none', $v['template']);
+check('the view says one can be made', $v['canTemplate']);
+$out = page();
+check('the list shows the no-template line', strpos($out, 'This source has no translation template. Make one from its files.') !== false);
+check('the list has the make button', strpos($out, 'name="tr_do" value="template"') !== false && strpos($out, 'Make a template') !== false);
+check('no table and no boxed block', strpos($out, 'tr-table') === false && strpos($out, 'widget-box') === false && strpos($out, 'osc-empty') === false);
+check('no rebuild before a template exists', strpos($out, 'Rebuild the template') === false);
+
+$make = base(['locale' => 'hi_IN', 'source' => 'plugin-delta', 'tr_do' => 'template']);
+pin('GET template redirects to the list', 'ADMIN/index.php?page=plugins&action=renderplugin&route=translator&locale=hi_IN&source=plugin-delta&iPage=1', run($make, 'GET'));
+check('GET template writes nothing', !is_file($deltaPot));
+$GLOBALS['csrfOk'] = false;
+$threw = false;
+try {
+    run($make);
+} catch (RuntimeException $e) {
+    $threw = $e->getMessage() === 'csrf';
+}
+$GLOBALS['csrfOk'] = true;
+check('bad token stops the template', $threw && !is_file($deltaPot));
+$GLOBALS['moderator'] = true;
+pin('moderator is sent to the admin home', 'ADMIN/index.php', run($make));
+$GLOBALS['moderator'] = false;
+check('moderator makes no template', !is_file($deltaPot));
+
+$url = run($make);
+pin('template lands back on the list', 'ADMIN/index.php?page=plugins&action=renderplugin&route=translator&locale=hi_IN&source=plugin-delta&iPage=1', $url);
+pin('template says how many texts', ['Template made with 1 text.'], flashes('ok'));
+check('template is written to the data folder', is_file($deltaPot));
+$GLOBALS['request'] = base(['source' => 'plugin-delta']);
+$v = Screen::view();
+pin('the view now uses the made template', 'generated', $v['template']);
+pin('its text is listed', 1, $v['listing']['total']);
+$out = page();
+check('the list is back', strpos($out, 'tr-table') !== false && strpos($out, 'This source has no translation template.') === false);
+check('the drawer offers a rebuild', preg_match('#id="trIo".*value="template".*Rebuild the template.*id="trDrawer"#s', $out) === 1);
+check('the drawer says it was made from the files', strpos($out, 'Made from the files of this theme or plugin.') !== false);
+
+run(base(['source' => 'plugin-beta', 'tr_do' => 'template']));
+pin('no texts is an error', ['No texts for this source were found in its files.'], flashes('error'));
+check('and writes no template', !is_file($tplDir . 'plugin-beta.pot'));
+run(base(['source' => 'plugin-alpha', 'tr_do' => 'template']));
+pin('a source with a template is left alone', ['This source has its own template.'], flashes('warning'));
+check('and gets no made template', !is_file($tplDir . 'plugin-alpha.pot'));
+run(base(['source' => '../../evil', 'tr_do' => 'template']));
+pin('an odd source name falls back to core, which has its own', ['This source has its own template.'], flashes('warning'));
+pin('nothing else is written', ['plugin-delta.pot'], array_values(array_diff(scandir($tplDir), ['.', '..'])));
+useStore($site, $store, $dir);
+$GLOBALS['request'] = base();
+
 harness_section('boot and menu');
 $GLOBALS['recorded']   = [];
 $GLOBALS['request'] = base();
