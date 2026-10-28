@@ -11,3 +11,4 @@ printf(_n('%d item', '%d items', $count, 'tplfix'), $count);
 echo $obj->__('Method call', 'tplfix');
 echo Foo::__('Static call', 'tplfix');
 echo _x('Post', 'verb', 'tplfix');
+echo __('Joined ' . $name, 'tplfix');

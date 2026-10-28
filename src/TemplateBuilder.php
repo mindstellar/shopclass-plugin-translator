@@ -81,10 +81,6 @@ final class TemplateBuilder
         $dirs = new RecursiveCallbackFilterIterator(
             new RecursiveDirectoryIterator($root, FilesystemIterator::SKIP_DOTS),
             static function (SplFileInfo $f): bool {
-                if ($f->isLink() && $f->isDir()) {
-                    return false;
-                }
-
                 return $f->isDir() ? !in_array($f->getFilename(), self::SKIP_DIRS, true) : true;
             }
         );

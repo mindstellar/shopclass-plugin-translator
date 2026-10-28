@@ -31,6 +31,7 @@ pin('only literal texts with the domain are kept', [
 ], $texts);
 check('another domain is skipped', $t->find('', 'Other domain') === false);
 check('a call with no domain is core, so skipped', $t->find('', 'Core text') === false);
+check('a joined text is skipped', $t->find('', 'Joined ') === false);
 check('a variable domain is skipped', $t->find('', 'Domain is a variable') === false);
 check('methods and static calls are skipped', $t->find('', 'Method call') === false && $t->find('', 'Static call') === false);
 check('vendor/ and tests/ are skipped', $t->find('', 'From vendor') === false && $t->find('', 'From tests') === false);
