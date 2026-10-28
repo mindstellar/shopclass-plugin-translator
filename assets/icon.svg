@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Translator">
+  <rect width="128" height="128" rx="24" fill="#6b3fa0"/>
+  <rect x="50" y="22" width="56" height="46" rx="10" fill="#e6d9f6"/>
+  <path d="M88 66l12 14-2-14z" fill="#e6d9f6"/>
+  <path d="M65 58l13-26 13 26M70 49h16" fill="none" stroke="#6b3fa0" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="22" y="50" width="58" height="48" rx="10" fill="#fff"/>
+  <path d="M34 96l-6 14 18-14z" fill="#fff"/>
+  <path d="M34 66h34M34 77h26M34 88h30" fill="none" stroke="#6b3fa0" stroke-width="6" stroke-linecap="round"/>
+</svg>
