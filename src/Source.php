@@ -18,7 +18,10 @@ final class Source
     private ?string $pot;
     private string $poDir;
     private string $poFile;
+    private string $folder;
+    private string $templateFile;
 
+    /** $folder is the theme or plugin folder; $templateFile is where a template made from it is kept. */
     public function __construct(
         string $name,
         string $kind,
@@ -26,7 +29,9 @@ final class Source
         string $label,
         ?string $pot,
         string $poDir,
-        string $poFile
+        string $poFile,
+        string $folder = '',
+        string $templateFile = ''
     ) {
         $this->name   = $name;
         $this->kind   = $kind;
@@ -35,6 +40,8 @@ final class Source
         $this->pot    = $pot;
         $this->poDir  = $poDir;
         $this->poFile = $poFile;
+        $this->folder = $folder;
+        $this->templateFile = $templateFile;
     }
 
     public function name(): string
@@ -57,9 +64,40 @@ final class Source
         return $this->label;
     }
 
+    /** The shipped .pot, else the template made from the files. */
     public function potPath(): ?string
     {
-        return $this->pot;
+        if ($this->pot !== null) {
+            return $this->pot;
+        }
+
+        return $this->template() === 'generated' ? $this->templateFile : null;
+    }
+
+    /** 'shipped' when the source ships a .pot or an en_US .po, 'generated' when one was made from its files, else 'none'. */
+    public function template(): string
+    {
+        if ($this->pot !== null || $this->shippedPoPath('en_US') !== null) {
+            return 'shipped';
+        }
+
+        return $this->templateFile !== '' && is_file($this->templateFile) ? 'generated' : 'none';
+    }
+
+    /** A template can be made for a theme or plugin that ships none. */
+    public function canMakeTemplate(): bool
+    {
+        return $this->folder !== '' && $this->templateFile !== '' && $this->template() !== 'shipped';
+    }
+
+    public function folder(): string
+    {
+        return $this->folder;
+    }
+
+    public function templateFile(): string
+    {
+        return $this->templateFile;
     }
 
     public function shippedPoPath(string $locale): ?string
@@ -74,6 +112,6 @@ final class Source
 
     public function originalsPath(string $locale): ?string
     {
-        return $this->pot ?? $this->shippedPoPath($locale) ?? $this->shippedPoPath('en_US');
+        return $this->potPath() ?? $this->shippedPoPath($locale) ?? $this->shippedPoPath('en_US');
     }
 }

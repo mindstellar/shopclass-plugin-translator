@@ -31,10 +31,10 @@ $site = realpath(__DIR__ . '/fixtures/site');
 
 function header_value(string $file, string $key): string
 {
-    return preg_match('/^' . $key . ':\s*(.+)$/m', (string) file_get_contents($file), $m) ? trim($m[1]) : '';
+    return is_file($file) && preg_match('/^' . $key . ':\s*(.+)$/m', (string) file_get_contents($file), $m) ? trim($m[1]) : '';
 }
 
-function make(string $site, string $theme = 'demo', ?array $plugins = null, string $parent = ''): Sources
+function make(string $site, string $theme = 'demo', ?array $plugins = null, string $parent = '', string $templates = ''): Sources
 {
     return new Sources(
         $site . '/oc-content/languages/',
@@ -44,7 +44,8 @@ function make(string $site, string $theme = 'demo', ?array $plugins = null, stri
         $plugins ?? ['alpha/index.php', 'beta/index.php', 'gamma/index.php'],
         static fn (string $slug): string => header_value($site . '/oc-content/plugins/' . $slug . '/index.php', 'Plugin Name'),
         static fn (string $slug): string => header_value($site . '/oc-content/themes/' . $slug . '/index.php', 'Theme Name'),
-        $parent
+        $parent,
+        $templates
     );
 }
 
@@ -104,6 +105,31 @@ pin('the parent is a source', ['core', 'messages', 'theme-demo'], array_map(fn (
 pin('the parent keeps its own label', 'Theme: Demo', $child->find('theme-demo')->label());
 pin('no parent, no theme source', ['core', 'messages'], array_map(fn ($x) => $x->name(), make($site, 'demo-child', [])->all()));
 pin('a parent that is the theme is listed once', ['core', 'messages', 'theme-demo'], array_map(fn ($x) => $x->name(), make($site, 'demo', [], 'demo')->all()));
+
+harness_section('sources with no template');
+$templates = tmpdir() . '/templates/';
+$t = make($site, 'demo-child', null, 'demo', $templates);
+pin('a theme and a plugin with no template are listed', ['core', 'messages', 'theme-demo-child', 'theme-demo', 'plugin-alpha', 'plugin-beta', 'plugin-gamma'], array_map(fn ($x) => $x->name(), $t->all()));
+$beta = $t->find('plugin-beta');
+pin('beta has no template', 'none', $beta->template());
+pin('beta has no pot yet', null, $beta->potPath());
+check('a template can be made for beta', $beta->canMakeTemplate());
+pin('beta is read from its folder', $site . '/oc-content/plugins/beta', $beta->folder());
+pin('the template path comes from the source name', $templates . 'plugin-beta.pot', $beta->templateFile());
+pin('the child theme folder', $site . '/oc-content/themes/demo-child', $t->find('theme-demo-child')->folder());
+pin('a shipped pot is shipped', 'shipped', $t->find('theme-demo')->template());
+pin('an en_US po is shipped', 'shipped', $t->find('plugin-gamma')->template());
+check('no template is made for a shipped source', !$t->find('plugin-alpha')->canMakeTemplate() && !$t->find('plugin-gamma')->canMakeTemplate());
+check('core never makes a template', !$t->find('core')->canMakeTemplate());
+mkdir($templates, 0755, true);
+file_put_contents($templates . 'plugin-beta.pot', "msgid \"\"\nmsgstr \"\"\n\nmsgid \"Hi\"\nmsgstr \"\"\n");
+file_put_contents($templates . 'plugin-alpha.pot', "msgid \"\"\nmsgstr \"\"\n");
+pin('a made template is used', 'generated', $beta->template());
+pin('its pot is the made template', $templates . 'plugin-beta.pot', $beta->potPath());
+pin('its originals are the made template', $templates . 'plugin-beta.pot', $beta->originalsPath('hi_IN'));
+check('it can be rebuilt', $beta->canMakeTemplate());
+pin('a shipped pot wins over a made one', $site . '/oc-content/plugins/alpha/languages/alpha.pot', $t->find('plugin-alpha')->potPath());
+pin('a plugin folder that is missing is not listed', null, make($site, 'demo', ['delta/index.php'], '', $templates)->find('plugin-delta'));
 
 harness_section('Locales');
 foreach (['hi_IN', 'en_US', 'ast_ES', 'hi_in'] as $c) {

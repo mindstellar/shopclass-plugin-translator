@@ -26,6 +26,7 @@ final class Sources
     private string $pluginsPath;
     private string $themeSlug;
     private string $parentSlug;
+    private string $templatesDir;
     private array $enabledPlugins;
     /** @var callable|null */
     private $pluginLabel;
@@ -36,7 +37,8 @@ final class Sources
 
     /**
      * The label callables take a slug and return the display name, or empty to use the slug.
-     * $parentSlug is the parent of a child theme, or empty.
+     * $parentSlug is the parent of a child theme, or empty. With $templatesDir set, a theme or plugin
+     * that ships no template is listed too, so one can be made from its files.
      */
     public function __construct(
         string $translationsPath,
@@ -46,7 +48,8 @@ final class Sources
         array $enabledPlugins,
         ?callable $pluginLabel = null,
         ?callable $themeLabel = null,
-        string $parentSlug = ''
+        string $parentSlug = '',
+        string $templatesDir = ''
     ) {
         $this->translationsPath = $translationsPath;
         $this->themesPath       = $themesPath;
@@ -56,6 +59,7 @@ final class Sources
         $this->pluginLabel      = $pluginLabel;
         $this->themeLabel       = $themeLabel;
         $this->parentSlug       = $parentSlug;
+        $this->templatesDir     = $templatesDir === '' ? '' : rtrim($templatesDir, '/') . '/';
     }
 
     public static function fromSite(): self
@@ -76,7 +80,8 @@ final class Sources
             static function (string $slug) {
                 return self::themeTitle(\WebThemes::getInstance()->loadThemeInfo($slug));
             },
-            self::parentTheme($theme)
+            self::parentTheme($theme),
+            Plugin::customDir() . 'templates/'
         );
     }
 
@@ -189,7 +194,7 @@ final class Sources
 
         $all = [];
         foreach (array_merge($candidates, $plugins) as $source) {
-            if ($source->potPath() !== null || $source->shippedPoPath('en_US') !== null) {
+            if ($source->template() !== 'none' || $source->canMakeTemplate()) {
                 $all[] = $source;
             }
         }
@@ -223,7 +228,9 @@ final class Sources
             'Theme: ' . $this->label($this->themeLabel, $slug),
             self::findPot($dir, [$slug . '.pot', 'theme.pot']),
             $dir,
-            'theme.po'
+            'theme.po',
+            $this->themesPath . $slug,
+            $this->templateFile(self::themeName($slug))
         );
     }
 
@@ -242,8 +249,16 @@ final class Sources
             'Plugin: ' . $this->label($this->pluginLabel, $slug),
             self::findPot($dir, [$slug . '.pot', 'messages.pot']),
             $dir,
-            'messages.po'
+            'messages.po',
+            is_dir($this->pluginsPath . $slug) ? $this->pluginsPath . $slug : '',
+            $this->templateFile(self::pluginName($slug))
         );
+    }
+
+    /** Where a template made for a source is kept; the name comes from all(), never from a request. */
+    private function templateFile(string $name): string
+    {
+        return $this->templatesDir !== '' && self::isName($name) ? $this->templatesDir . $name . '.pot' : '';
     }
 
     private function label(?callable $reader, string $slug): string
