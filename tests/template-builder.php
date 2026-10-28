@@ -41,6 +41,7 @@ $refs = $t->find('', 'Hello') ? $t->find('', 'Hello')->getReferences() : [];
 pin('references are relative file and line', [['inc/escapes.php', 4], ['index.php', 5]], array_values($refs));
 pin('another domain gives nothing', 0, count(TemplateBuilder::scan($fixture, 'nothing-here')));
 pin('a missing folder gives nothing', 0, count(TemplateBuilder::scan($fixture . '/no-such-dir', 'tplfix')));
+pin('an empty folder path is not the working folder', 0, count(TemplateBuilder::scan('', 'translator')));
 
 harness_section('files');
 pin('PHP files only, skip folders left out', ['inc/escapes.php', 'index.php'], TemplateBuilder::files($fixture));

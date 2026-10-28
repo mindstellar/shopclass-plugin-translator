@@ -42,6 +42,9 @@ final class TemplateBuilder
     /** Writes the template to $target and returns how many texts it has; nothing is written when it has none. */
     public static function build(string $folder, string $domain, string $target): int
     {
+        if ($target === '') {
+            throw new RuntimeException('No place to write the template');
+        }
         $t = self::scan($folder, $domain);
         $n = count($t);
         if ($n === 0) {
@@ -63,7 +66,7 @@ final class TemplateBuilder
         $t = new Translations();
         $t->setHeader('Project-Id-Version', $domain);
         $t->setPluralForms(2, '(n != 1)');
-        $root = realpath($folder);
+        $root = $folder === '' ? false : realpath($folder);
         if ($root === false || !is_dir($root) || $domain === '') {
             return $t;
         }
