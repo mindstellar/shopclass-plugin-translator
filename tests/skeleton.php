@@ -22,7 +22,7 @@ function header_field(string $file, string $name): string
 harness_section('plugin header');
 pin('Requires Shopclass', '7.0.6', header_field($root . '/index.php', 'Requires Shopclass'));
 pin('Requires PHP', '8.0', header_field($root . '/index.php', 'Requires PHP'));
-pin('Version', '0.1.0', header_field($root . '/index.php', 'Version'));
+pin('Version', '0.1.1', header_field($root . '/index.php', 'Version'));
 $json = json_decode((string) file_get_contents($root . '/shopclass.json'), true);
 pin('shopclass.json slug is Short Name', header_field($root . '/index.php', 'Short Name'), $json['slug'] ?? null);
 
