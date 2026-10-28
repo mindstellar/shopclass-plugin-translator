@@ -56,6 +56,14 @@ foreach (['../x/hi_IN', "hi_IN\n", 'hi_IN/hi_IN'] as $bad) {
 $t = new FakeTranslation();
 pin('missing locale dir loads nothing', [], $loader->load($t, 'fr_FR'));
 
+harness_section('a child theme loads its parent');
+$t = new FakeTranslation();
+(new Loader($dir, 'demo-child', [], 'demo'))->load($t, 'hi_IN');
+pin('the parent catalogue loads', [['core.mo', 'core'], ['messages.mo', 'messages'], ['theme-demo.mo', 'demo']], $t->calls);
+$t = new FakeTranslation();
+(new Loader($dir, 'demo-child', []))->load($t, 'hi_IN');
+pin('no parent, no theme catalogue', [['core.mo', 'core'], ['messages.mo', 'messages']], $t->calls);
+
 harness_section('one bad file does not stop the others');
 $broken = new class () extends FakeTranslation {
     public function _load(string $file, string $domain): void

@@ -12,13 +12,14 @@ namespace mindstellar\translator;
 final class Loader
 {
     private string $dir;
-    private string $themeSlug;
+    /** @var array<string,true> the active theme and, for a child theme, its parent */
+    private array $themes;
     private array $enabledPlugins;
 
-    public function __construct(string $dir, string $themeSlug, array $enabledPlugins)
+    public function __construct(string $dir, string $themeSlug, array $enabledPlugins, string $parentSlug = '')
     {
         $this->dir            = rtrim($dir, '/') . '/';
-        $this->themeSlug      = $themeSlug;
+        $this->themes         = array_fill_keys(array_filter([$themeSlug, $parentSlug], 'strlen'), true);
         $this->enabledPlugins = $enabledPlugins;
     }
 
@@ -28,7 +29,8 @@ final class Loader
         $dir = '';
         try {
             $dir = Plugin::customDir();
-            (new self($dir, (string) osc_apply_filter('theme', osc_theme()), \Plugins::listEnabled()))
+            $theme = (string) osc_apply_filter('theme', osc_theme());
+            (new self($dir, $theme, \Plugins::listEnabled(), Sources::parentTheme($theme)))
                 ->load($translation, (string) $locale);
         } catch (\Throwable $e) {
             error_log('translator: could not load custom texts from ' . $dir . ': ' . $e->getMessage());
@@ -61,7 +63,7 @@ final class Loader
                 continue;
             }
             [$kind, $domain] = $parsed;
-            if (($kind === 'theme' && $domain !== $this->themeSlug) || ($kind === 'plugin' && !isset($enabled[$domain]))) {
+            if (($kind === 'theme' && !isset($this->themes[$domain])) || ($kind === 'plugin' && !isset($enabled[$domain]))) {
                 continue;
             }
             $byKind[$kind][$domain] = $path;

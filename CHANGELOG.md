@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.1
+
+### Fixed
+- With a child theme active, the parent theme's texts are listed and your changes to them show on the site.
+
 ## 0.1.0
 
 ### New

@@ -25,6 +25,7 @@ final class Sources
     private string $themesPath;
     private string $pluginsPath;
     private string $themeSlug;
+    private string $parentSlug;
     private array $enabledPlugins;
     /** @var callable|null */
     private $pluginLabel;
@@ -35,6 +36,7 @@ final class Sources
 
     /**
      * The label callables take a slug and return the display name, or empty to use the slug.
+     * $parentSlug is the parent of a child theme, or empty.
      */
     public function __construct(
         string $translationsPath,
@@ -43,7 +45,8 @@ final class Sources
         string $themeSlug,
         array $enabledPlugins,
         ?callable $pluginLabel = null,
-        ?callable $themeLabel = null
+        ?callable $themeLabel = null,
+        string $parentSlug = ''
     ) {
         $this->translationsPath = $translationsPath;
         $this->themesPath       = $themesPath;
@@ -52,15 +55,18 @@ final class Sources
         $this->enabledPlugins   = $enabledPlugins;
         $this->pluginLabel      = $pluginLabel;
         $this->themeLabel       = $themeLabel;
+        $this->parentSlug       = $parentSlug;
     }
 
     public static function fromSite(): self
     {
+        $theme = (string) osc_apply_filter('theme', osc_theme());
+
         return new self(
             osc_translations_path(),
             osc_themes_path(),
             osc_plugins_path(),
-            (string) osc_apply_filter('theme', osc_theme()),
+            $theme,
             \Plugins::listEnabled(),
             static function (string $slug) {
                 $info = \Plugins::getInfo($slug . '/index.php');
@@ -69,8 +75,21 @@ final class Sources
             },
             static function (string $slug) {
                 return self::themeTitle(\WebThemes::getInstance()->loadThemeInfo($slug));
-            }
+            },
+            self::parentTheme($theme)
         );
+    }
+
+    /** The "Parent Theme:" header of a child theme, or empty when it has none. */
+    public static function parentTheme(string $slug): string
+    {
+        if (preg_match(self::SLUG_PATTERN, $slug) !== 1 || !class_exists('WebThemes')) {
+            return '';
+        }
+        $info   = \WebThemes::getInstance()->loadThemeInfo($slug);
+        $parent = is_array($info) ? trim((string) ($info['template'] ?? '')) : '';
+
+        return $parent !== $slug && preg_match(self::SLUG_PATTERN, $parent) === 1 ? $parent : '';
     }
 
     /** The theme header's name, with a lower-case header such as "storefront" shown as "Storefront". */
@@ -150,9 +169,12 @@ final class Sources
             ),
         ];
 
-        $theme = $this->themeSource();
-        if ($theme !== null) {
-            $candidates[] = $theme;
+        // A child theme's templates fall back to its parent's, so both hold texts the site shows.
+        foreach (array_unique([$this->themeSlug, $this->parentSlug]) as $slug) {
+            $theme = $slug !== '' ? $this->themeSource($slug) : null;
+            if ($theme !== null) {
+                $candidates[] = $theme;
+            }
         }
 
         $plugins = [];
@@ -187,9 +209,8 @@ final class Sources
         return null;
     }
 
-    private function themeSource(): ?Source
+    private function themeSource(string $slug): ?Source
     {
-        $slug = $this->themeSlug;
         if (preg_match(self::SLUG_PATTERN, $slug) !== 1 || !is_dir($this->themesPath . $slug)) {
             return null;
         }

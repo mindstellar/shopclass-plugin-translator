@@ -3,7 +3,7 @@
 Plugin Name: Translator
 Plugin URI: https://github.com/mindstellar/shopclass-plugin-translator
 Description: Change or translate any text on your site.
-Version: 0.1.0
+Version: 0.1.1
 Author: Navjot Tomer (Mindstellar)
 Author URI: https://mindstellar.com
 Short Name: translator

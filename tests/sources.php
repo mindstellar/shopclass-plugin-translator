@@ -34,7 +34,7 @@ function header_value(string $file, string $key): string
     return preg_match('/^' . $key . ':\s*(.+)$/m', (string) file_get_contents($file), $m) ? trim($m[1]) : '';
 }
 
-function make(string $site, string $theme = 'demo', ?array $plugins = null): Sources
+function make(string $site, string $theme = 'demo', ?array $plugins = null, string $parent = ''): Sources
 {
     return new Sources(
         $site . '/oc-content/languages/',
@@ -43,7 +43,8 @@ function make(string $site, string $theme = 'demo', ?array $plugins = null): Sou
         $theme,
         $plugins ?? ['alpha/index.php', 'beta/index.php', 'gamma/index.php'],
         static fn (string $slug): string => header_value($site . '/oc-content/plugins/' . $slug . '/index.php', 'Plugin Name'),
-        static fn (string $slug): string => header_value($site . '/oc-content/themes/' . $slug . '/index.php', 'Theme Name')
+        static fn (string $slug): string => header_value($site . '/oc-content/themes/' . $slug . '/index.php', 'Theme Name'),
+        $parent
     );
 }
 
@@ -96,6 +97,13 @@ harness_section('unsafe slugs are skipped');
 $names = array_map(fn ($x) => $x->name(), make($site, '../themes/demo', ['../index.php', '../evil/index.php', 'alpha/index.php'])->all());
 pin('only safe sources', ['core', 'messages', 'plugin-alpha'], $names);
 pin('missing theme folder skipped', ['core', 'messages'], array_map(fn ($x) => $x->name(), make($site, 'nope', [])->all()));
+
+harness_section('a child theme lists its parent');
+$child = make($site, 'demo-child', [], 'demo');
+pin('the parent is a source', ['core', 'messages', 'theme-demo'], array_map(fn ($x) => $x->name(), $child->all()));
+pin('the parent keeps its own label', 'Theme: Demo', $child->find('theme-demo')->label());
+pin('no parent, no theme source', ['core', 'messages'], array_map(fn ($x) => $x->name(), make($site, 'demo-child', [])->all()));
+pin('a parent that is the theme is listed once', ['core', 'messages', 'theme-demo'], array_map(fn ($x) => $x->name(), make($site, 'demo', [], 'demo')->all()));
 
 harness_section('Locales');
 foreach (['hi_IN', 'en_US', 'ast_ES', 'hi_in'] as $c) {
