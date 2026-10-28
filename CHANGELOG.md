@@ -2,6 +2,9 @@
 
 ## 0.1.1
 
+### New
+- Make a translation template for a theme or plugin that ships none.
+
 ### Fixed
 - With a child theme active, the parent theme's texts are listed and your changes to them show on the site.
 

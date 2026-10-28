@@ -27,6 +27,8 @@ Open Tools → Translator.
 
 Saving checks your text. Placeholders such as `%s` and `%1$s` must stay, and so must HTML tags. The page cache is cleared on save, so the new text shows at once.
 
+A theme or plugin that ships no translation template shows a Make a template button. It reads the texts from its PHP files. Rebuild the template in Import and export after the theme or plugin updates.
+
 E-mail templates, categories and pages are content. They keep their own screens.
 
 ## Upload and download
