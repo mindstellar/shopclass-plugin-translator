@@ -28,6 +28,7 @@ final class TemplateBuilder
 {
     public const MAX_FILES = 3000;
     public const MAX_FILE_BYTES = 1048576;
+    public const MAX_TOTAL_BYTES = 20971520;
     public const SKIP_DIRS = ['vendor', 'node_modules', 'tests', '.git'];
 
     /** Core's translation functions: [text arg, plural arg or null, context arg or null, domain arg]. */
@@ -87,9 +88,11 @@ final class TemplateBuilder
                 return $f->isDir() ? !in_array($f->getFilename(), self::SKIP_DIRS, true) : true;
             }
         );
-        $out  = [];
-        $seen = 0;
-        foreach (new RecursiveIteratorIterator($dirs) as $f) {
+        $out   = [];
+        $seen  = 0;
+        $bytes = 0;
+        // SELF_FIRST visits folders too, so a tree of empty folders also counts toward the cap.
+        foreach (new RecursiveIteratorIterator($dirs, RecursiveIteratorIterator::SELF_FIRST) as $f) {
             if (count($out) >= self::MAX_FILES || ++$seen > self::MAX_FILES * 10) {
                 break;
             }
@@ -100,6 +103,10 @@ final class TemplateBuilder
             if ($real === false || strncmp($real, $root . '/', strlen($root) + 1) !== 0 || !is_file($real)
                 || filesize($real) > self::MAX_FILE_BYTES) {
                 continue;
+            }
+            $bytes += (int) filesize($real);
+            if ($bytes > self::MAX_TOTAL_BYTES) {
+                break;
             }
             $out[] = str_replace('\\', '/', substr($f->getPathname(), strlen($root) + 1));
         }
