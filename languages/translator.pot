@@ -8,11 +8,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Language: \n"
 
-#: admin/page.php:91
+#: admin/page.php:98
 msgid "Actions"
 msgstr ""
 
-#: admin/page.php:208
+#: admin/page.php:216
 msgid "Add to my changes"
 msgstr ""
 
@@ -20,8 +20,8 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: admin/page.php:246
-#: admin/page.php:250
+#: admin/page.php:265
+#: admin/page.php:269
 msgid "All your changed texts for %s go back to the original. You can undo this once."
 msgstr ""
 
@@ -29,13 +29,13 @@ msgstr ""
 msgid "All your texts match the current originals."
 msgstr ""
 
-#: src/admin/Actions.php:45
-#: src/admin/Actions.php:74
+#: src/admin/Actions.php:46
+#: src/admin/Actions.php:75
 msgid "Back to the original text."
 msgstr ""
 
-#: admin/page.php:253
-#: admin/page.php:301
+#: admin/page.php:272
+#: admin/page.php:320
 msgid "Cancel"
 msgstr ""
 
@@ -47,7 +47,7 @@ msgstr ""
 msgid "Change or translate any text on your site. Your changes are kept when core, themes and plugins update."
 msgstr ""
 
-#: admin/page.php:158
+#: admin/page.php:165
 msgid "Changed"
 msgstr ""
 
@@ -59,11 +59,11 @@ msgstr ""
 msgid "Check again"
 msgstr ""
 
-#: admin/page.php:100
+#: admin/page.php:107
 msgid "Check the spelling, or search for a shorter part of the text."
 msgstr ""
 
-#: src/admin/Actions.php:121
+#: src/admin/Actions.php:122
 msgid "Checked."
 msgstr ""
 
@@ -72,21 +72,21 @@ msgstr ""
 msgid "Choose a .po file."
 msgstr ""
 
-#: admin/page.php:101
+#: admin/page.php:108
 msgid "Clear search"
 msgstr ""
 
-#: admin/page.php:181
-#: admin/page.php:262
-#: admin/page.php:278
+#: admin/page.php:189
+#: admin/page.php:281
+#: admin/page.php:297
 msgid "Close"
 msgstr ""
 
-#: src/admin/Screen.php:189
+#: src/admin/Screen.php:192
 msgid "Core"
 msgstr ""
 
-#: src/admin/Actions.php:123
+#: src/admin/Actions.php:124
 msgid "Could not check your texts."
 msgstr ""
 
@@ -94,7 +94,7 @@ msgstr ""
 msgid "Could not make a temporary file for the export."
 msgstr ""
 
-#: src/admin/Actions.php:320
+#: src/admin/Actions.php:347
 msgid "Could not make the export."
 msgstr ""
 
@@ -102,11 +102,11 @@ msgstr ""
 msgid "Could not open the zip file."
 msgstr ""
 
-#: src/admin/Actions.php:379
+#: src/admin/Actions.php:406
 msgid "Could not save. Check that oc-content/plugin-data/translator/ can be written."
 msgstr ""
 
-#: src/admin/Actions.php:310
+#: src/admin/Actions.php:337
 msgid "Could not write the export."
 msgstr ""
 
@@ -114,30 +114,30 @@ msgstr ""
 msgid "Could not write the zip file."
 msgstr ""
 
-#: admin/page.php:258
+#: admin/page.php:277
 msgid "Deleting a language does not delete your changes. They are in %s."
 msgstr ""
 
-#: admin/page.php:230
+#: admin/page.php:238
 msgid "Download"
 msgstr ""
 
-#: admin/page.php:233
+#: admin/page.php:241
 msgid "Download my changes (.po)"
 msgstr ""
 
-#: admin/page.php:149
-#: admin/page.php:160
+#: admin/page.php:156
+#: admin/page.php:167
 msgid "Edit"
 msgstr ""
 
-#: admin/page.php:276
-#: src/admin/Screen.php:234
+#: admin/page.php:295
+#: src/admin/Screen.php:239
 msgid "Edit text"
 msgstr ""
 
 #: src/TextCheck.php:22
-#: src/admin/Screen.php:228
+#: src/admin/Screen.php:233
 msgid "Enter a text"
 msgstr ""
 
@@ -154,15 +154,15 @@ msgid "Filter"
 msgstr ""
 
 #: admin/page.php:83
-#: admin/page.php:179
+#: admin/page.php:187
 msgid "Import and export"
 msgstr ""
 
-#: admin/page.php:148
+#: admin/page.php:155
 msgid "Keep mine"
 msgstr ""
 
-#: src/admin/Actions.php:107
+#: src/admin/Actions.php:108
 msgid "Kept your text."
 msgstr ""
 
@@ -174,11 +174,19 @@ msgstr ""
 msgid "Last checked %s"
 msgstr ""
 
-#: src/admin/Screen.php:233
+#: src/admin/Screen.php:238
 msgid "Looks good."
 msgstr ""
 
-#: admin/page.php:218
+#: admin/page.php:254
+msgid "Made from the files of this theme or plugin. Rebuild it after an update."
+msgstr ""
+
+#: admin/page.php:89
+msgid "Make a template"
+msgstr ""
+
+#: admin/page.php:226
 msgid "Max 2 MB, for this language and source. You can undo an upload once."
 msgstr ""
 
@@ -186,75 +194,79 @@ msgstr ""
 msgid "Needs a look"
 msgstr ""
 
-#: src/admin/Actions.php:281
+#: src/admin/Actions.php:308
 msgid "No changed texts for this language and source yet."
 msgstr ""
 
-#: src/admin/Actions.php:62
+#: src/admin/Actions.php:63
 msgid "No text was sent. Nothing was changed."
 msgstr ""
 
-#: src/admin/Actions.php:179
+#: src/admin/Actions.php:265
+msgid "No texts for this source were found in its files."
+msgstr ""
+
+#: src/admin/Actions.php:180
 msgid "No texts in the file match this source."
 msgstr ""
 
-#: admin/page.php:99
+#: admin/page.php:106
 msgid "No texts match your search."
 msgstr ""
 
-#: admin/page.php:108
+#: admin/page.php:115
 msgid "No texts match."
 msgstr ""
 
-#: admin/page.php:104
+#: admin/page.php:111
 msgid "No texts need a look."
 msgstr ""
 
-#: src/admin/Actions.php:326
+#: src/admin/Actions.php:353
 msgid "No texts to export for this language."
 msgstr ""
 
 #: admin/page.php:20
-#: src/admin/Screen.php:354
+#: src/admin/Screen.php:359
 msgid "Only an administrator can change texts."
 msgstr ""
 
-#: admin/page.php:214
+#: admin/page.php:222
 msgid "Only the texts in the file are kept."
 msgstr ""
 
-#: admin/page.php:235
+#: admin/page.php:243
 msgid "Only your changed texts for this language and source."
 msgstr ""
 
-#: admin/page.php:156
+#: admin/page.php:163
 msgid "Original changed"
 msgstr ""
 
-#: admin/page.php:152
+#: admin/page.php:159
 msgid "Original removed"
 msgstr ""
 
-#: admin/page.php:88
-#: admin/page.php:133
-#: admin/page.php:287
-#: src/admin/Screen.php:235
+#: admin/page.php:95
+#: admin/page.php:140
+#: admin/page.php:306
+#: src/admin/Screen.php:240
 msgid "Original text"
 msgstr ""
 
-#: admin/page.php:106
+#: admin/page.php:113
 msgid "Pick a text in All to change it. Your changes show here."
 msgstr ""
 
-#: admin/page.php:154
+#: admin/page.php:161
 msgid "Placeholders differ"
 msgstr ""
 
-#: src/admin/Screen.php:188
+#: src/admin/Screen.php:191
 msgid "Plugins"
 msgstr ""
 
-#: src/admin/Screen.php:236
+#: src/admin/Screen.php:241
 msgid "Plural"
 msgstr ""
 
@@ -262,40 +274,44 @@ msgstr ""
 msgid "Plural form %1$d: %2$s"
 msgstr ""
 
-#: src/admin/Screen.php:239
+#: src/admin/Screen.php:244
 msgid "Plural form %s"
 msgstr ""
 
-#: admin/page.php:224
+#: admin/page.php:232
 msgid "Puts your texts back as they were before the last upload or Remove all. Texts saved since then are lost."
 msgstr ""
 
-#: admin/page.php:252
+#: admin/page.php:257
+msgid "Rebuild the template"
+msgstr ""
+
+#: admin/page.php:271
 msgid "Remove all"
 msgstr ""
 
-#: admin/page.php:245
-#: admin/page.php:253
+#: admin/page.php:264
+#: admin/page.php:272
 msgid "Remove all my changes"
 msgstr ""
 
-#: admin/page.php:251
+#: admin/page.php:270
 msgid "Remove all my changes?"
 msgstr ""
 
-#: admin/page.php:146
+#: admin/page.php:153
 msgid "Remove mine"
 msgstr ""
 
-#: admin/page.php:213
+#: admin/page.php:221
 msgid "Replace all my changes"
 msgstr ""
 
-#: admin/page.php:300
+#: admin/page.php:319
 msgid "Reset to original"
 msgstr ""
 
-#: admin/page.php:299
+#: admin/page.php:318
 msgid "Save"
 msgstr ""
 
@@ -308,7 +324,7 @@ msgstr ""
 msgid "Search texts"
 msgstr ""
 
-#: src/admin/Screen.php:238
+#: src/admin/Screen.php:243
 msgid "Singular"
 msgstr ""
 
@@ -316,29 +332,33 @@ msgstr ""
 msgid "Source"
 msgstr ""
 
-#: admin/page.php:90
-#: admin/page.php:150
+#: admin/page.php:97
+#: admin/page.php:157
 msgid "Status"
 msgstr ""
 
-#: src/admin/Actions.php:77
+#: admin/page.php:253
+msgid "Template"
+msgstr ""
+
+#: src/admin/Actions.php:78
 msgid "Text saved."
 msgstr ""
 
-#: admin/page.php:209
+#: admin/page.php:217
 msgid "Texts in the file replace the same texts. Your other changes stay."
 msgstr ""
 
-#: src/admin/Actions.php:98
+#: src/admin/Actions.php:99
 #: src/admin/TextForm.php:37
 msgid "That text is not in this source any more"
 msgstr ""
 
-#: src/admin/Actions.php:96
+#: src/admin/Actions.php:97
 msgid "That text is not one of your changes."
 msgstr ""
 
-#: src/admin/Actions.php:42
+#: src/admin/Actions.php:43
 msgid "That text was not changed."
 msgstr ""
 
@@ -350,7 +370,7 @@ msgstr ""
 msgid "The file is larger than 2 MB."
 msgstr ""
 
-#: src/admin/Actions.php:172
+#: src/admin/Actions.php:173
 #: src/admin/PoUpload.php:117
 msgid "The file is not a .po file we can read."
 msgstr ""
@@ -363,25 +383,33 @@ msgstr ""
 msgid "The file must be UTF-8."
 msgstr ""
 
-#: admin/page.php:240
+#: admin/page.php:248
 msgid "The full translation has the shipped texts with your changes over them."
 msgstr ""
 
-#: admin/page.php:290
+#: admin/page.php:309
 msgid "The text you replaced is now"
 msgstr ""
 
-#: src/admin/Screen.php:189
+#: src/admin/Screen.php:192
 msgid "Theme"
 msgstr ""
 
-#: src/admin/Actions.php:213
+#: src/admin/Actions.php:214
 msgid "There is nothing to undo."
 msgstr ""
 
-#: src/admin/Actions.php:294
+#: src/admin/Actions.php:321
 #: src/admin/Export.php:78
 msgid "This server cannot make zip files."
+msgstr ""
+
+#: src/admin/Actions.php:251
+msgid "This source has its own template."
+msgstr ""
+
+#: admin/page.php:88
+msgid "This source has no translation template. Make one from its files."
 msgstr ""
 
 #: admin/page.php:40
@@ -394,98 +422,98 @@ msgstr ""
 msgid "Translator needs Shopclass 7.0.6 or newer"
 msgstr ""
 
-#: admin/page.php:223
+#: admin/page.php:231
 msgid "Undo last upload"
 msgstr ""
 
-#: admin/page.php:217
+#: admin/page.php:225
 msgid "Upload"
 msgstr ""
 
-#: admin/page.php:185
-#: admin/page.php:202
+#: admin/page.php:193
+#: admin/page.php:210
 msgid "Upload a .po file"
 msgstr ""
 
-#: admin/page.php:148
+#: admin/page.php:155
 msgid "Use the new original"
 msgstr ""
 
-#: admin/page.php:147
+#: admin/page.php:154
 msgid "Use the original"
 msgstr ""
 
-#: admin/page.php:205
+#: admin/page.php:213
 msgid "What to do with your changes"
 msgstr ""
 
-#: admin/page.php:106
-#: admin/page.php:237
-#: src/admin/Actions.php:233
+#: admin/page.php:113
+#: admin/page.php:245
+#: src/admin/Actions.php:234
 msgid "You have not changed any texts here yet."
 msgstr ""
 
-#: admin/page.php:139
+#: admin/page.php:146
 msgid "You replaced %1$s. It is now %2$s."
 msgstr ""
 
-#: admin/page.php:89
-#: admin/page.php:135
-#: src/admin/Screen.php:237
+#: admin/page.php:96
+#: admin/page.php:142
+#: src/admin/Screen.php:242
 msgid "Your text"
 msgstr ""
 
 #: src/TextCheck.php:43
-#: src/admin/Screen.php:232
+#: src/admin/Screen.php:237
 msgid "Your text cannot contain scripts or event handlers"
 msgstr ""
 
 #: src/TextCheck.php:34
-#: src/admin/Screen.php:230
+#: src/admin/Screen.php:235
 msgid "Your text has a placeholder the original does not have: %s"
 msgstr ""
 
 #: src/TextCheck.php:30
-#: src/admin/Screen.php:229
+#: src/admin/Screen.php:234
 msgid "Your text must keep %s"
 msgstr ""
 
 #: src/TextCheck.php:40
-#: src/admin/Screen.php:231
+#: src/admin/Screen.php:236
 msgid "Your text must keep the same HTML tags as the original"
 msgstr ""
 
-#: src/admin/Actions.php:220
+#: src/admin/Actions.php:221
 msgid "Your texts are back as they were."
 msgstr ""
 
-#: admin/page.php:104
+#: admin/page.php:111
 msgid "Your texts match the current originals."
 msgstr ""
 
-#: src/admin/Screen.php:309
+#: src/admin/Screen.php:314
 msgid "just now"
 msgstr ""
 
-#: src/admin/Actions.php:255
+#: src/admin/Actions.php:282
 msgid "%1$d text did not pass the check: %2$s"
 msgid_plural "%1$d texts did not pass the check: %2$s"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/admin/Actions.php:251
+#: src/admin/Actions.php:278
 msgid "%1$d text is not in this source: %2$s"
 msgid_plural "%1$d texts are not in this source: %2$s"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/admin/Screen.php:319
+#: src/admin/Screen.php:324
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/admin/Screen.php:314
+#: src/admin/Screen.php:319
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
 msgstr[0] ""
@@ -497,14 +525,20 @@ msgid_plural "%d of your texts need a look."
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/admin/Actions.php:237
+#: src/admin/Actions.php:238
 msgid "%d text removed."
 msgid_plural "%d texts removed."
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/admin/Actions.php:199
+#: src/admin/Actions.php:200
 msgid "%d text saved."
 msgid_plural "%d texts saved."
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/admin/Actions.php:267
+msgid "Template made with %d text."
+msgid_plural "Template made with %d texts."
 msgstr[0] ""
 msgstr[1] ""
