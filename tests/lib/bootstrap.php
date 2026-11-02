@@ -28,7 +28,10 @@ if (!is_file($gettext)) {
 }
 require_once $gettext;
 
-$fs = $core . '/oc-includes/osclass/classes/utility/FileSystem.php';
+$fs = $core . '/oc-includes/classes/core/utility/FileSystem.php';
+if (!is_file($fs)) {
+    $fs = $core . '/oc-includes/osclass/classes/utility/FileSystem.php';
+}
 if (!is_file($fs)) {
     fwrite(STDERR, "Core's FileSystem is not at $fs. Set SHOPCLASS_CORE to a Shopclass checkout.\n");
     exit(1);
