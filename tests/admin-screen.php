@@ -213,9 +213,9 @@ function osc_add_filter(...$a)
 {
     record('add_filter', $a);
 }
-function osc_admin_menu_tools(...$a)
+function osc_admin_menu_plugins(...$a)
 {
-    record('admin_menu_tools', $a);
+    record('admin_menu_plugins', $a);
 }
 function osc_admin_empty(array $o)
 {
@@ -1019,17 +1019,15 @@ $GLOBALS['recorded']   = [];
 $GLOBALS['request'] = base();
 Screen::boot();
 $names = array_column($GLOBALS['recorded'], 0);
-pin('boot on the route registers the assets', ['admin_plugin_page', 'add_filter', 'register_script', 'enqueue_script', 'enqueue_style'], $names);
-pin('the script depends on admin-osc', ['admin-osc'], $GLOBALS['recorded'][2][1][2] ?? null);
-pin('the section label is filtered', 'custom_plugin_title', $GLOBALS['recorded'][1][1][0] ?? null);
-pin('the section label says Tools', 'Tools', ($GLOBALS['recorded'][1][1][1])('Plugins'));
+pin('boot on the route registers the assets', ['admin_plugin_page', 'register_script', 'enqueue_script', 'enqueue_style'], $names);
+pin('the script depends on admin-osc', ['admin-osc'], $GLOBALS['recorded'][1][1][2] ?? null);
 $GLOBALS['recorded']   = [];
 $GLOBALS['request'] = ['page' => 'items'];
 Screen::boot();
 pin('boot elsewhere only declares the page', ['admin_plugin_page'], array_column($GLOBALS['recorded'], 0));
 $GLOBALS['recorded'] = [];
 Screen::menu();
-pin('menu row is under Tools for administrators', ['Translator', 'ADMIN/index.php?page=plugins&action=renderplugin&route=translator', 'translator', 'administrator'], $GLOBALS['recorded'][0][1] ?? null);
+pin('menu row is under Plugins for administrators', ['Translator', 'ADMIN/index.php?page=plugins&action=renderplugin&route=translator', 'translator', 'administrator'], $GLOBALS['recorded'][0][1] ?? null);
 
 harness_section('moderator page');
 $GLOBALS['moderator'] = true;

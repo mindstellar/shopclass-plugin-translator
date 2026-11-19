@@ -19,7 +19,7 @@ Your texts are saved in `oc-content/plugin-data/translator/`. They stay through 
 
 ## Use
 
-Open Tools → Translator.
+Open Plugins → Translator.
 
 1. Pick a language and a source: Shopclass itself, the messages, your theme, or a plugin.
 2. Search for the text. Click Edit, type your text, save.

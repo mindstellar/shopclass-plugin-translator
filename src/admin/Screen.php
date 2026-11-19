@@ -44,7 +44,7 @@ final class Screen
 
     public static function menu(): void
     {
-        osc_admin_menu_tools(__('Translator', 'translator'), osc_route_admin_url(self::ROUTE), 'translator', 'administrator');
+        osc_admin_menu_plugins(__('Translator', 'translator'), osc_route_admin_url(self::ROUTE), 'translator', 'administrator');
     }
 
     public static function boot(): void
@@ -56,8 +56,6 @@ final class Screen
         if (Params::getParamString('route') !== self::ROUTE) {
             return;
         }
-        // The page sits under Tools, so its section label says Tools, not Plugins.
-        osc_add_filter('custom_plugin_title', static fn (): string => __('Tools'));
         $base = osc_plugin_url(self::$pluginFile);
         osc_register_script('translator-admin', osc_asset_url_versioned($base . 'admin/translator.js'), ['admin-osc']);
         osc_enqueue_script('translator-admin');
